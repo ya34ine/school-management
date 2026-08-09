@@ -22,4 +22,6 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
+    //test
+
 }
