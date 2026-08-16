@@ -1,11 +1,12 @@
 package com.school.management.controller;
+import org.springframework.stereotype.Controller;
 
 import com.school.management.entity.User;
 import com.school.management.entity.UserRole;
 import com.school.management.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
 
@@ -15,12 +16,25 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public User createUser(
-            @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam UserRole role) {
-
-        return userService.createUser(username, password, role);
+    @GetMapping("/new")
+    public String showCreateUserForm() {
+        return "users/create";
     }
+
+    @PostMapping
+    public String createUser(
+        @RequestParam String username,
+        @RequestParam String password,
+        @RequestParam UserRole role) {
+
+        System.out.println("CREATE USER: " + username + " / " + role);
+
+    userService.createUser(username, password, role);
+
+    return "redirect:/users/new";
+}
+
+
+   
+
 }
