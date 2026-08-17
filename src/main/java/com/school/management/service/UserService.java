@@ -5,6 +5,7 @@ import com.school.management.entity.UserRole;
 import com.school.management.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -24,15 +25,20 @@ public class UserService {
             String username,
             String password,
             UserRole role) {
-
         String encodedPassword = passwordEncoder.encode(password);
-
         User user = new User(
                 username,
                 encodedPassword,
                 role
         );
-
         return userRepository.save(user);
     }
+
+    public List<User> getAllUsers() {
+    return userRepository.findAll();
+}
+
+
+
+
 }

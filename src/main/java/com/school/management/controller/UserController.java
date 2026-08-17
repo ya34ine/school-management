@@ -5,6 +5,9 @@ import com.school.management.entity.User;
 import com.school.management.entity.UserRole;
 import com.school.management.service.UserService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/users")
@@ -34,6 +37,17 @@ public class UserController {
     return "redirect:/users/new";
 }
 
+@GetMapping
+public String listUsers(Model model) {
+
+    List<User> users = userService.getAllUsers();
+
+    model.addAttribute("users", users);
+
+    return "users/list";
+}
+
+   
 
    
 
