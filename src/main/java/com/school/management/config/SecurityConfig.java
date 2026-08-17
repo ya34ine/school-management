@@ -24,7 +24,7 @@ public class SecurityConfig {
 
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/users/new").hasRole("DIRECTOR")
+                .requestMatchers("/users/new","/users","/users/{id}/edit").hasRole("DIRECTOR")
                 .anyRequest().authenticated()
             )
             .formLogin(withDefaults());

@@ -17,6 +17,7 @@
         <th>ID</th>
         <th>Username</th>
         <th>Role</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
@@ -29,6 +30,13 @@
         <td th:text="${user.username}"></td>
 
         <td th:text="${user.role}"></td>
+
+         <td>
+        <a th:href="@{/users/{id}/edit(id=${user.id})}">
+            Edit
+        </a>
+    </td>
+
 
     </tr>
 

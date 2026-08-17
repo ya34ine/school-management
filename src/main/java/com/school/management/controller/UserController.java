@@ -47,6 +47,29 @@ public String listUsers(Model model) {
     return "users/list";
 }
 
+@GetMapping("/{id}/edit")
+public String showEditUserForm(
+        @PathVariable Long id,
+        Model model) {
+
+    User user = userService.getUserById(id);
+
+    model.addAttribute("user", user);
+
+    return "users/edit";
+}
+
+@PostMapping("/{id}")
+public String updateUser(
+        @PathVariable Long id,
+        @RequestParam String username,
+        @RequestParam UserRole role) {
+
+    userService.updateUser(id, username, role);
+
+    return "redirect:/users";
+}
+
    
 
    
